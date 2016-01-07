@@ -11,7 +11,7 @@
 
 TITLE = Photo Marker
 TITLE_SHORT = Marker
-VERSION_NUMBER = v4.0.0
+VERSION_NUMBER = v3.6.0
 
 DEVICE_REGISTER_FAIL = Failed to register for this device. (It's probably fine)
 
@@ -55,9 +55,7 @@ OnMessage(0x00FF, "InputMessage") ;whenever you get input from a registered HID,
 ;INT: A 32-bit signed integer. The range is -2147483648 through 2147483647 decimal. "typedef int INT;"
 ;LPVOID: A pointer to any type. "typedef void *LPVOID;"
 ;PVOID: A pointer to any type. "typedef void *PVOID;"
-;PUINT: A pointer to a UINT. "typedef UINT *PUINT;"
 ;SHORT: A 16-bit integer. The range is –32768 through 32767 decimal. "typedef short SHORT;"
-;UINT: An unsigned INT.
 ;USHORT: An unsigned SHORT.	"typedef unsigned short USHORT;"
 ;WPARAM: A message parameter. "typedef UINT_PTR WPARAM;"
 
@@ -65,9 +63,7 @@ SizeOfBOOL := 4
 SizeOfDWORD := 4
 SizeOfHANDLE := A_PtrSize
 SizeOfHWND := SizeOfHANDLE
-SizeOfPUINT := A_PtrSize
 SizeOfLPVOID := A_PtrSize
-SizeOfUINT := 4
 SizeOfULONG := 4
 SizeOfUSHORT := 2
 SizeOfWPARAM := A_PtrSize
@@ -121,9 +117,7 @@ Accepting = 0
 inputWait = 1
 AcceptingScores = 0
 
-;; From Shaun (http://www.autohotkey.com/forum/viewtopic.php?t=39574) 
-;; Modified to remove the GUI
-;; This registers the HID devices so that whenever we get input from any of them, this script gets notified.
+;; This registers the keyboards so that whenever we get input from any of them, this script gets notified.
 Loop %Count% {
     Type := NumGet(RawInputList, ((A_Index - 1) * SizeofRawInputDeviceList) + SizeOfHANDLE, "Int")
 
@@ -163,9 +157,7 @@ InputMessage(wParam, lParam, msg, hwnd)
     global
     
     Res := DllCall("GetRawInputData", UInt, lParam, UInt, RID_INPUT, UInt, 0, "UInt *", Size, UInt, SizeOfRawInputHeaderStructure)
-    
     VarSetCapacity(Buffer, Size)
-   
     Res := DllCall("GetRawInputData", UInt, lParam, UInt, RID_INPUT, UInt, &Buffer, "UInt *", Size, UInt, SizeOfRawInputHeaderStructure)
 
     Type := NumGet(Buffer, 0, "Int")
@@ -238,16 +230,16 @@ NumberKVP(number)    ;;Takes the input and offsets it to get the number required
 
 
 Calibrate: ;Is called when you press the Calibrate button
-Gui, Submit,    ;gets the variables from the radio buttons / various fields
-if (Mode = 1)
-{
-    Calibrate()
-    JudgingFrame()
-}
-else if (Mode = 2)
-{
-    AcceptanceButtonSettings()
-}
+    Gui, Submit,    ;gets the variables from the radio buttons / various fields
+    if (Mode = 1)
+    {
+        Calibrate()
+        JudgingFrame()
+    }
+    else if (Mode = 2)
+    {
+        AcceptanceButtonSettings()
+    }
 return
 
 Calibrate()
