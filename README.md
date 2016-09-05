@@ -10,4 +10,5 @@ The functionality was tailored to their specific use case, but there is nothing 
 Check out the [README.txt](https://github.com/movermeyer/photo_marker/blob/master/README.txt) file or the [User's Manual](https://github.com/movermeyer/photo_marker/blob/master/docs/Photo%20Marker%20User%20Manual.rtf) for instructions on how to use the program
 
 ##Compilation
-The code is compiled into a Windows binary using the AutoHotkey Official compiler ([Ahk2Exe](https://autohotkey.com/download/))
+The code is compiled into a Windows binary using the AutoHotkey Official compiler ([Ahk2Exe](https://autohotkey.com/download/)) and the Unicode 64-bit setting.
+
