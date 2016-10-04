@@ -1,3 +1,9 @@
+##Version 4.0.0
+
+ * Added the capability to set min/max scores per judge, allowing you to have scenarios such as: the judges enter a score from 0-100, and it will rescale the total score to 30.
+ * Judges can now use '.' key to reset mistakes they might have made.
+ * UI now tells you which judge the error pertains to.
+
 ##Version 3.6.0
 
  * Ported the code to 64-bit, fixing the "Failed to register..." bug
