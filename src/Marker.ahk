@@ -116,7 +116,7 @@ MainGUI()
     OnMessage(WM_INPUT, "InputMessage") ;whenever you get input from a registered HID, then call the InputMessage function 
     Gui, Add, Text,, %START_CALIBRATION_PROMPT_STRING%
     Gui, Add, Edit, Number gOnChangeNumJudges HwndNumJudgesEditField
-    Gui, Add, UpDown, vnumJudges gOnChangeNumJudges Range1-%MAX_RANGE_VALUE%, 1 ;TODO: 3
+    Gui, Add, UpDown, vnumJudges gOnChangeNumJudges Range1-%MAX_RANGE_VALUE%, 3
     Gui, Add, Radio, vMode gOnChangeScoringMode HwndNumericScoringRadio, Numeric Scoring
     Gui, Add, Radio, xs gOnChangeScoringMode HwndAcceptanceScoringRadio, Acceptance Scoring
     if (Mode = 1)
